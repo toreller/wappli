@@ -7,21 +7,10 @@ import java.math.BigDecimal;
 
 public class BankAccountDTO implements EntityDTO {
     @NotNull
-    private BigDecimal balance;
-
-    @NotNull
     private String currency;
 
     @NotNull
     Long customerId;
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
 
     public String getCurrency() {
         return currency;

@@ -49,9 +49,6 @@ public class BankAccountQueryService extends AbstractQueryService<BankAccount, B
             if (criteria.getId() != null) {
                 specification = specification.and(buildSpecification(criteria.getId(), BankAccount_.id));
             }
-            if (criteria.getBalance() != null) {
-                specification = specification.and(buildSpecification(criteria.getBalance(), BankAccount_.balance));
-            }
             if (criteria.getCurrency() != null) {
                 specification = specification.and(buildSpecification(criteria.getCurrency(), BankAccount_.currency));
             }

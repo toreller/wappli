@@ -61,7 +61,6 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
     protected BankAccountDTO createAnotherEntityDTO() {
         BankAccountDTO bankAccountDTO = TestDTOFactory.createBankAccountDTO();
 
-        bankAccountDTO.setBalance(BigDecimal.valueOf(2435));
         bankAccountDTO.setCurrency("EUR");
         bankAccountDTO.setCustomerId(singlesDb.getCustormer().getId());
 
@@ -75,14 +74,13 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
 
     @Override
     protected void assertFieldsEqualRequired(BankAccount testEntity) {
-        assertEquals(createAnotherEntityDTO().getBalance(), testEntity.getBalance());
         assertEquals(createAnotherEntityDTO().getCurrency(), testEntity.getCurrency());
         assertEquals(createAnotherEntityDTO().getCustomerId(), testEntity.getCustomer().getId());
     }
 
     @Override
     protected BankAccountDTO setARequiredFieldToNull(BankAccountDTO entitiyDTO) {
-        entitiyDTO.setBalance(null);
+        entitiyDTO.setCurrency(null);
 
         return entitiyDTO;
     }
@@ -90,23 +88,18 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
     @Override
     protected ResultActions assertAllJsonObjectsContainDefaultValues(ResultActions resultActions) throws Exception {
         return resultActions
-                .andExpect(jsonPath("$.[*].item.balance").value(hasItem(TestDTOFactory.createBankAccountDTO().getBalance().doubleValue())))
                 .andExpect(jsonPath("$.[*].item.currency").value(hasItem(TestDTOFactory.createBankAccountDTO().getCurrency())));
     }
 
     @Override
     protected ResultActions assertJsonObjectContainsDefaultValues(ResultActions resultActions) throws Exception {
         return resultActions
-                .andExpect(jsonPath("$.item.balance").value(TestDTOFactory.createBankAccountDTO().getBalance().doubleValue()))
                 .andExpect(jsonPath("$.item.currency").value(TestDTOFactory.createBankAccountDTO().getCurrency()));
     }
 
     @Override
     protected String[] filtersForDefaultEntityShouldBeFound() {
         return new String[]{
-                "balance.equals=" + TestDTOFactory.createBankAccountDTO().getBalance(),
-                "balance.in=" + TestDTOFactory.createBankAccountDTO().getBalance(),
-                "balance.specified=true",
                 "currency.equals=" + TestDTOFactory.createBankAccountDTO().getCurrency(),
                 "currency.in=" + TestDTOFactory.createBankAccountDTO().getCurrency(),
                 "currency.specified=true"
@@ -116,9 +109,6 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
     @Override
     protected String[] filtersForDefaultEntityShouldNotBeFound() {
         return new String[]{
-                "balance.equals=" + createAnotherEntityDTO().getBalance(),
-                "balance.in=" + createAnotherEntityDTO().getBalance(),
-                "balance.specified=false",
                 "currency.equals=" + createAnotherEntityDTO().getCurrency(),
                 "currency.in=" + createAnotherEntityDTO().getCurrency(),
                 "currency.specified=false"
@@ -128,20 +118,18 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
     @Override
     protected ResultActions defaultEntityShouldBeFoundAttributeCheck(ResultActions resultActions) throws Exception {
         return resultActions
-                .andExpect(jsonPath("$.[*].item.balance").value(hasItem(TestDTOFactory.createBankAccountDTO().getBalance().doubleValue())))
                 .andExpect(jsonPath("$.[*].item.currency").value(hasItem(TestDTOFactory.createBankAccountDTO().getCurrency())));
     }
 
     @Override
     protected void setFieldsToUpdated(BankAccountDTO updatedEntityDTO) {
-        updatedEntityDTO.setBalance(createAnotherEntityDTO().getBalance());
         updatedEntityDTO.setCurrency(createAnotherEntityDTO().getCurrency());
 
     }
 
     @Override
     protected void assertFieldsEqualUpdated(BankAccount testEntity) {
-        assertThat(testEntity.getBalance()).isEqualTo(createAnotherEntityDTO().getBalance());
+        assertThat(testEntity.getCurrency()).isEqualTo(createAnotherEntityDTO().getCurrency());
     }
 
     @Override

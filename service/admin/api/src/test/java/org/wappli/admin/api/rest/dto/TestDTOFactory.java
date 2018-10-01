@@ -17,7 +17,6 @@ public class TestDTOFactory {
     public static BankAccountDTO createBankAccountDTO() {
         BankAccountDTO dto = new BankAccountDTO();
 
-        dto.setBalance(BigDecimal.valueOf(123456.04));
         dto.setCurrency("HUF");
         dto.setCustomerId(1L);
 

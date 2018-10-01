@@ -18,9 +18,9 @@ public class BankAccount extends AbstractEntity implements HasId, Serializable {
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
-    private BigDecimal balance;
+//    @NotNull
+//    @Column(nullable = false)
+//    private BigDecimal balance; // moved to wappli-transfer microservice
 
     @NotNull
     @Column(nullable = false, length = 3)
@@ -38,14 +38,6 @@ public class BankAccount extends AbstractEntity implements HasId, Serializable {
     @Override
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
     }
 
     public Customer getCustomer() {

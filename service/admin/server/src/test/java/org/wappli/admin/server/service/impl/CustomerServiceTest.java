@@ -71,7 +71,6 @@ public class CustomerServiceTest {
         Set<BankAccount> bankAccounts = new HashSet<>();
         for (int i = 0; i < noBankAccounts; i++) {
             BankAccount bankAccount = TestObjectFactory.createBankAccount(customer);
-            bankAccount.setBalance(bankAccount.getBalance().add(BigDecimal.ONE));
 
             em.persist(bankAccount);
             if (bankAccountId < 0L) {

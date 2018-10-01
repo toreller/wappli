@@ -18,7 +18,6 @@ public class TestObjectFactory {
     public static BankAccount createBankAccount(Customer customer) {
         BankAccount o = new BankAccount();
 
-        o.setBalance(BigDecimal.valueOf(123456.04));
         o.setCurrency("HUF");
         o.setCustomer(customer);
 
@@ -28,7 +27,6 @@ public class TestObjectFactory {
     public static BankAccount createAnotherBankAccount(Customer customer) {
         BankAccount o = new BankAccount();
 
-        o.setBalance(BigDecimal.valueOf(234567.02));
         o.setCurrency("EUR");
         o.setCustomer(customer);
 
