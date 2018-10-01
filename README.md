@@ -1,8 +1,8 @@
 # wappli
 
-demo banking webapp with spring-boot, hibernate
+demo banking webapp with spring-boot 2, hibernate
 
-use the repo to bootstrap your webapp
+use the repo to <b>bootstrap your webapp</b>
 
 microservices:
 
@@ -13,4 +13,9 @@ concepts:
 - separate database for each microservice
 - java client stubs (call REST service as if it was a local java object)
 
+ 
+ soon to come:
+ - angular client
+ - authentication microservice
+ - audit (hibernate envers) microservice
  
