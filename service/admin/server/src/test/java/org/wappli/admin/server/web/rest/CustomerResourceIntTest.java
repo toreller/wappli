@@ -51,11 +51,6 @@ public class CustomerResourceIntTest extends AbstractCrudResourceTest<Customer,
     }
 
     @Override
-    protected CustomerResource createResource() {
-        return new CustomerResource(service, queryService, mapper, commonLog);
-    }
-
-    @Override
     protected CustomerDTO createAnotherEntityDTO() {
         CustomerDTO customerDTO = TestDTOFactory.createCustomerDTO();
 

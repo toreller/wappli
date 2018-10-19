@@ -3,6 +3,7 @@ package org.wappli.common.server.web.rest;
 import org.junit.After;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.wappli.common.api.rest.dto.entities.EntityDTO;
 import org.wappli.common.api.rest.util.HasId;
@@ -41,7 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.wappli.common.server.web.rest.TestUtil.createFormattingConversionService;
 
 @RunWith(SpringRunner.class)
-@TestPropertySource(properties = { "eureka.client.enabled = false"})
+@AutoConfigureMockMvc
 public abstract class AbstractCrudResourceTest<ENTITY extends AbstractEntity & HasId,
         EDTO extends EntityDTO,
         CRITERIA,
@@ -67,37 +68,18 @@ public abstract class AbstractCrudResourceTest<ENTITY extends AbstractEntity & H
     @Autowired
     protected EntityManager em;
 
+    @Autowired
     protected MockMvc restMockMvc;
-
 
     @Before
     public void setup() {
         setServices();
-        MockitoAnnotations.initMocks(this);
-        final RESOURCE repositoryResource = createResource();
-        this.restMockMvc = MockMvcBuilders.standaloneSetup(repositoryResource)
-            .setCustomArgumentResolvers(pageableDTOResolver)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .addFilter(createCommonsRequestLoggingFilter())
-            .build();
         singlesDb.create();
-    }
-
-    private CommonsRequestLoggingFilter createCommonsRequestLoggingFilter() {
-        CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
-        filter.setIncludeHeaders(true);
-        filter.setIncludeClientInfo(true);
-        filter.setIncludePayload(true);
-        filter.setIncludeQueryString(true);
-        return filter;
     }
 
     protected abstract String getEntityURL();
 
     abstract protected void setServices();
-
-    protected abstract RESOURCE createResource();
 
     protected abstract EDTO createAnotherEntityDTO();
 

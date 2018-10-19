@@ -53,11 +53,6 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
     }
 
     @Override
-    protected BankAccountResource createResource() {
-        return new BankAccountResource(service, queryService, mapper, commonLog);
-    }
-
-    @Override
     protected BankAccountDTO createAnotherEntityDTO() {
         BankAccountDTO bankAccountDTO = TestDTOFactory.createBankAccountDTO();
 
