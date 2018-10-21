@@ -22,9 +22,9 @@ public interface TransferWebInterface {
     @PostMapping(ENTITY_URL)
     ResponseEntity<IdDTO> transfer(@RequestBody AmountTransferDTO amountTransfer);
 
-    @GetMapping(ENTITY_URL + "/account-balance/{id}")
-    ResponseEntity<CurrentAccountBalanceDTO> getCurrentAccountBalance(@PathVariable("id") Long accountId);
+    @GetMapping(ENTITY_URL + "/account-balance/{accountId}")
+    ResponseEntity<CurrentAccountBalanceDTO> getCurrentAccountBalance(@PathVariable("accountId") Long accountId);
 
-    @GetMapping(ENTITY_URL + "/deposit-or-withdraws")
-    ResponseEntity<List<DepositOrWithdrawDTO>> getAllDepositOrWithdraws(@PathVariable("id") Long accountId);
+    @GetMapping(ENTITY_URL + "/deposit-or-withdraws/{accountId}")
+    ResponseEntity<List<DepositOrWithdrawDTO>> getAllDepositOrWithdraws(@PathVariable("accountId") Long accountId);
 }

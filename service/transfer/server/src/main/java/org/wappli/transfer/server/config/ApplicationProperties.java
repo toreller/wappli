@@ -16,6 +16,7 @@ public class ApplicationProperties {
     }
 
     public static class Rest {
+        private String admin;
         private String transfer;
 
         public String getTransfer() {
@@ -24,6 +25,14 @@ public class ApplicationProperties {
 
         public void setTransfer(String admin) {
             this.transfer = admin;
+        }
+
+        public String getAdmin() {
+            return admin;
+        }
+
+        public void setAdmin(String admin) {
+            this.admin = admin;
         }
     }
 }

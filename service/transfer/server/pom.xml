@@ -99,6 +99,13 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.wappli</groupId>
+			<artifactId>wappli-common-server</artifactId>
+			<version>${wappli-common-server.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

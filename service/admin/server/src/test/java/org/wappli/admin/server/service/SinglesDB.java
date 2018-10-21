@@ -35,37 +35,11 @@ public class SinglesDB extends AbstractSinglesDb {
     }
 
     @Override
-    @Transactional
-    public void truncateAll(){
-        List<String> tablenames = retrieveTablenames();
-
-        em.flush();
-        em.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
-
-        tablenames.forEach(tableName -> em.createNativeQuery("TRUNCATE TABLE " + tableName).executeUpdate());
-
-        em.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
-
+    protected void detachObjects() {
         em.detach(bankAccount);
         em.detach(custormer);
         bankAccount = null;
         custormer = null;
-    }
-
-    private List<String> retrieveTablenames() {
-        List<String> tableNames = new ArrayList<>();
-        Session session = em.unwrap(Session.class);
-
-        session.doWork(connection -> {
-            ResultSet tables = connection.getMetaData().getTables(null, null, null, new String[]{"TABLE"});
-            if (tables != null) {
-                while (tables.next()) {
-                    tableNames.add(tables.getString("TABLE_NAME"));
-                }
-            }
-        });
-
-        return tableNames;
     }
 
     public BankAccount getBankAccount() {

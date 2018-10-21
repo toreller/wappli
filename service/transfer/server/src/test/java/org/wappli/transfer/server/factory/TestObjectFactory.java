@@ -32,8 +32,9 @@ public class TestObjectFactory {
     public static AccountBalance createAccountBalance() {
         AccountBalance o = new AccountBalance();
 
+        o.setId(1L);
         o.setBalance(BigDecimal.valueOf(1999.22));
-        o.setTimestamp(Instant.parse("2018-07-03T21:33:00"));
+        o.setTimestamp(Instant.parse("2018-07-03T21:33:00.00Z"));
 
         return o;
     }

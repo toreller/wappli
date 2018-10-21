@@ -4,17 +4,17 @@ import org.wappli.common.api.rest.dto.entities.EntityDTO;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 public class CurrentAccountBalanceDTO implements EntityDTO {
     @NotNull
     Long accountId;
 
     @NotNull
-    BigDecimal amount;
+    BigDecimal balance;
 
     @NotNull
-    LocalDateTime timestamp;
+    Instant timestamp;
 
     public Long getAccountId() {
         return accountId;
@@ -24,19 +24,19 @@ public class CurrentAccountBalanceDTO implements EntityDTO {
         this.accountId = accountId;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 }

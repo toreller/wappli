@@ -60,12 +60,6 @@ public abstract class AbstractCrudResourceTest<ENTITY extends AbstractEntity & H
     protected AbstractSinglesDb singlesDb;
 
     @Autowired
-    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
-
-    @Autowired
-    private PageableDTOResolver pageableDTOResolver;
-
-    @Autowired
     protected EntityManager em;
 
     @Autowired

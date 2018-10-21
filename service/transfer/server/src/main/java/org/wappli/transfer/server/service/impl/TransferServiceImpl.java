@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.wappli.transfer.api.rest.dto.input.DepositOrWithdrawDTO;
 import org.wappli.transfer.server.domain.AccountBalance;
 import org.wappli.transfer.server.domain.AmountTransfer;
 import org.wappli.transfer.server.domain.DepositOrWithdraw;
@@ -11,6 +12,8 @@ import org.wappli.transfer.server.repository.AccountBalanceRepository;
 import org.wappli.transfer.server.repository.AmountTransferRepository;
 import org.wappli.transfer.server.repository.DepositOrWithdrawRepository;
 import org.wappli.transfer.server.service.TransferService;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -49,7 +52,21 @@ public class TransferServiceImpl implements TransferService {
         create(amountTransfer.getFrom());
         create(amountTransfer.getTo());
 
-        amountTransferRepository.save(amountTransfer);
-        return null;
+        return amountTransferRepository.save(amountTransfer);
+    }
+
+    @Override
+    public AccountBalance getAccountBalance(long id) {
+        log.debug("Request to get accountBalance: {}", id);
+
+        return accountBalanceRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException(id, AccountBalance.class));
+    }
+
+    @Override
+    public List<DepositOrWithdraw> getAllDepositOrWithdraws(long accountId) {
+        log.debug("Request to getAll depositOrWithdraws");
+
+        return depositOrWithdrawRepository.findByBankAccountId(accountId);
     }
 }
