@@ -41,7 +41,7 @@ public class ResponseUtil {
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public static <X> X unwrap(Logger log, ResponseEntity<X> response) {
+    public static <X> X unwrapOrException(Logger log, ResponseEntity<X> response) {
         if (response.getStatusCode().isError()) {
             log.error("http error: ", response.toString());
 

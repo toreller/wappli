@@ -16,11 +16,11 @@ public class AmountTransfer implements HasId, Serializable {
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "from_amount_in_out_id")
+    @JoinColumn(name = "from_deposit_or_withdraw_id")
     DepositOrWithdraw from;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "to_amount_in_out_id")
+    @JoinColumn(name = "to_deposit_or_withdraw_id")
     DepositOrWithdraw to;
 
     @Override

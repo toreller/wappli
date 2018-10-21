@@ -5,23 +5,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.wappli.transfer.server.domain.AccountBalance;
+import org.wappli.transfer.server.domain.AmountTransfer;
 import org.wappli.transfer.server.domain.DepositOrWithdraw;
 import org.wappli.transfer.server.repository.AccountBalanceRepository;
+import org.wappli.transfer.server.repository.AmountTransferRepository;
 import org.wappli.transfer.server.repository.DepositOrWithdrawRepository;
-import org.wappli.transfer.server.service.DepositOrWithdrawService;
-
-import java.util.Optional;
+import org.wappli.transfer.server.service.TransferService;
 
 @Service
 @Transactional
-public class DepositOrWithdrawServiceImpl implements DepositOrWithdrawService {
-    private static final Logger log = LoggerFactory.getLogger(DepositOrWithdrawServiceImpl.class);
+public class TransferServiceImpl implements TransferService {
+    private static final Logger log = LoggerFactory.getLogger(TransferServiceImpl.class);
 
     private DepositOrWithdrawRepository depositOrWithdrawRepository;
+    private AmountTransferRepository amountTransferRepository;
     private AccountBalanceRepository accountBalanceRepository;
 
-    public DepositOrWithdrawServiceImpl(DepositOrWithdrawRepository depositOrWithdrawRepository, AccountBalanceRepository accountBalanceRepository) {
+    public TransferServiceImpl(DepositOrWithdrawRepository depositOrWithdrawRepository,
+                               AmountTransferRepository amountTransferRepository, AccountBalanceRepository accountBalanceRepository) {
         this.depositOrWithdrawRepository = depositOrWithdrawRepository;
+        this.amountTransferRepository = amountTransferRepository;
         this.accountBalanceRepository = accountBalanceRepository;
     }
 
@@ -37,5 +40,16 @@ public class DepositOrWithdrawServiceImpl implements DepositOrWithdrawService {
         depositOrWithdrawRepository.save(depositOrWithdraw);
 
         return depositOrWithdraw;
+    }
+
+    @Override
+    public AmountTransfer create(AmountTransfer amountTransfer) {
+        log.debug("Request to create : {}", amountTransfer);
+
+        create(amountTransfer.getFrom());
+        create(amountTransfer.getTo());
+
+        amountTransferRepository.save(amountTransfer);
+        return null;
     }
 }

@@ -18,12 +18,11 @@ public abstract class BankAccountMapper extends MapperUsingRepository<BankAccoun
     private BankAccountRepository repository;
 
     @Override
-    @Mapping(source = "currency", target = "item.currency")
-    @Mapping(source = "customer.id", target = "item.customerId")
+    @Mapping(source = "bankAccount", target = "item")
     public abstract EntityWithIdOutputDTO<BankAccountDTO> toDtoWithId(BankAccount bankAccount);
 
     @Override
-    @Mapping(source = "id", target = "customerId")
+    @Mapping(source = "customer.id", target = "customerId")
     public abstract BankAccountDTO toDto(BankAccount bankAccount);
 
     @Override

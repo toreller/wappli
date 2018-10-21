@@ -18,7 +18,7 @@ public abstract class CustomerMapper extends MapperUsingRepository<CustomerDTO, 
     private CustomerRepository repository;
 
     @Override
-    @Mapping(source = "name", target = "item.name")
+    @Mapping(source = "customer", target = "item")
     public abstract EntityWithIdOutputDTO<CustomerDTO> toDtoWithId(Customer customer);
 
     @Override

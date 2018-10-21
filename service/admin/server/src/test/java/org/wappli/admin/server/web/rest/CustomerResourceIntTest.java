@@ -3,6 +3,7 @@ package org.wappli.admin.server.web.rest;
 import org.wappli.admin.api.rest.criteria.CustomerCriteria;
 import org.wappli.admin.api.rest.dto.TestDTOFactory;
 import org.wappli.admin.api.rest.dto.entities.CustomerDTO;
+import org.wappli.admin.api.rest.interfaces.CustomerWebInterface;
 import org.wappli.admin.server.WappliAdminApplication;
 import org.wappli.admin.server.domain.Customer;
 import org.junit.runner.RunWith;
@@ -123,6 +124,6 @@ public class CustomerResourceIntTest extends AbstractCrudResourceTest<Customer,
 
     @Override
     protected String getEntityURL() {
-        return "/customers";
+        return CustomerWebInterface.ENTITY_URL;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.wappli.admin.api.rest.criteria.BankAccountCriteria;
 import org.wappli.admin.api.rest.dto.TestDTOFactory;
 import org.wappli.admin.api.rest.dto.entities.BankAccountDTO;
+import org.wappli.admin.api.rest.interfaces.BankAccountWebInterface;
 import org.wappli.admin.server.WappliAdminApplication;
 import org.wappli.admin.server.domain.BankAccount;
 import org.wappli.admin.server.repository.BankAccountRepository;
@@ -129,6 +130,6 @@ public class BankAccountResourceIntTest extends AbstractCrudResourceTest<BankAcc
 
     @Override
     protected String getEntityURL() {
-        return "/bankAccounts";
+        return BankAccountWebInterface.ENTITY_URL;
     }
 }

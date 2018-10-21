@@ -6,6 +6,7 @@ import org.wappli.transfer.server.domain.AmountTransfer;
 import org.wappli.transfer.server.domain.DepositOrWithdraw;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class TestObjectFactory {
@@ -32,7 +33,7 @@ public class TestObjectFactory {
         AccountBalance o = new AccountBalance();
 
         o.setBalance(BigDecimal.valueOf(1999.22));
-        o.setTimestamp(LocalDateTime.of(2018, 07, 03, 21, 33));
+        o.setTimestamp(Instant.parse("2018-07-03T21:33:00"));
 
         return o;
     }

@@ -13,8 +13,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 public interface BankAccountWebInterface extends CrudWebInterface<BankAccountDTO, BankAccountCriteria> {
-
-    String ENTITY_URL = "/bankAccounts";
+    String ENTITY_URL = "/bank-accounts";
 
     @Override
     @PostMapping(ENTITY_URL)

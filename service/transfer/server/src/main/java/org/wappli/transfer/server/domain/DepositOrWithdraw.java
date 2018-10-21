@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Entity
 public class DepositOrWithdraw implements HasId, Serializable {
     private static final long serialVersionUID = 1L;
-    private static final String SEQ_NAME = "seq_amount_in_out_id";
+    private static final String SEQ_NAME = "seq_deposit_or_withdraw_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)

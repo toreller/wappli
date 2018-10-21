@@ -5,11 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.wappli.transfer.server.domain.AmountTransfer;
-import org.wappli.transfer.server.domain.DepositOrWithdraw;
 import org.wappli.transfer.server.repository.AmountTransferRepository;
-import org.wappli.transfer.server.repository.DepositOrWithdrawRepository;
 import org.wappli.transfer.server.service.AmountTransferService;
-import org.wappli.transfer.server.service.DepositOrWithdrawService;
 
 @Service
 @Transactional

@@ -23,15 +23,15 @@ public abstract class DepositOrWithdrawMapper extends MapperUsingRepository<Depo
     public abstract EntityWithIdOutputDTO<DepositOrWithdrawDTO> toDtoWithId(DepositOrWithdraw customer);
 
     @Override
-    public abstract DepositOrWithdrawDTO toDto(DepositOrWithdraw customer);
+    public abstract DepositOrWithdrawDTO toDto(DepositOrWithdraw depositOrWithdraw);
 
     @Override
     @Mapping(target = "id", ignore = true)
-    public abstract void merge(DepositOrWithdrawDTO customerDTO, @MappingTarget DepositOrWithdraw entity);
+    public abstract void merge(DepositOrWithdrawDTO depositOrWithdrawDTO, @MappingTarget DepositOrWithdraw entity);
 
     @Override
     @Mapping(target = "id", ignore = true)
-    public abstract DepositOrWithdraw toEntity(DepositOrWithdrawDTO customerDTO);
+    public abstract DepositOrWithdraw toEntity(DepositOrWithdrawDTO depositOrWithdrawDTO);
 
     @Override
     protected JpaRepository<DepositOrWithdraw, Long> getRepository() {
