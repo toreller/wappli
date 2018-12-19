@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>wappli-admin</name>
-	<description>Wappli admin microservice</description>
+	<description>wappli admin microservice</description>
 
 	<parent>
 		<groupId>org.wappli</groupId>

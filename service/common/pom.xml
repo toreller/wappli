@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>wappli-common</name>
-	<description>Wappli common lib</description>
+	<description>wappli common lib</description>
 
 	<parent>
 		<groupId>org.wappli</groupId>

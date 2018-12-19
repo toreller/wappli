@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<name>wappli-transfer</name>
-	<description>Wappli transfer microservice</description>
+	<description>wappli transfer microservice</description>
 
 	<parent>
 		<groupId>org.wappli</groupId>

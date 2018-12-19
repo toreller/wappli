@@ -12,7 +12,7 @@ import org.wappli.admin.api.rest.interfaces.BankAccountWebInterface;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@FeignClient(name = "admin", url = "${application.rest.admin}", decode404 = true, path = "/backend/api/v1")
+@FeignClient(name = "admin", url = "${application.rest.admin}", path = "/backend/api/v1")
 public interface BankAccountClientFeign {
 
     String ENTITY_URL = BankAccountWebInterface.ENTITY_URL;
