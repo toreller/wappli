@@ -1,6 +1,6 @@
 package org.wappli.auth.server.domain;
 
-public final class UserRoles {
+public final class UzerRoles {
 
     public static final String ADMIN = "ADMIN";
     public static final String USER = "USER";
@@ -8,6 +8,6 @@ public final class UserRoles {
     public static final String APPLICANT = "APPLICANT";
     public static final String LEADER = "LEADER";
 
-    private UserRoles() {
+    private UzerRoles() {
     }
 }

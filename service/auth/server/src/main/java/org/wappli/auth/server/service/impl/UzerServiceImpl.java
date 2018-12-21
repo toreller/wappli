@@ -4,7 +4,7 @@ import org.wappli.auth.api.dto.entities.UzerDTO;
 import org.wappli.auth.api.dto.input.UzerRegInputDTO;
 import org.wappli.auth.server.config.ApplicationConfig;
 import org.wappli.auth.server.domain.Role;
-import org.wappli.auth.server.domain.UserRoles;
+import org.wappli.auth.server.domain.UzerRoles;
 import org.wappli.auth.server.domain.Uzer;
 import org.wappli.auth.server.repository.RoleRepository;
 import org.wappli.auth.server.repository.UzerRepository;
@@ -20,14 +20,11 @@ import org.wappli.common.server.service.AbstractCrudService;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
 public class UzerServiceImpl extends AbstractCrudService<Uzer, UzerRepository> implements UzerService {
-
     private static Logger LOG = LoggerFactory.getLogger(UzerServiceImpl.class);
 
     private final ApplicationConfig applicationConfig;
@@ -49,13 +46,10 @@ public class UzerServiceImpl extends AbstractCrudService<Uzer, UzerRepository> i
 
 
     public EntityWithIdOutputDTO<UzerDTO> register(UzerRegInputDTO uzerRegInputDTO, Locale locale) {
+        Optional<Role> userRole = roleRepository.findByKeyIgnoreCase(UzerRoles.USER);
 
-        Uzer uzer = uzerMapper.toEntity(uzerRegInputDTO, createActivationHash(), calculateAccountActivationDeadline());
-        Optional<Role> userRole = roleRepository.findByKeyIgnoreCase(UserRoles.USER);
-
-        if (userRole.isPresent()) {
-            uzer.addRole(userRole.get());
-        }
+        Uzer uzer = uzerMapper.toEntity(uzerRegInputDTO, createActivationHash(), calculateAccountActivationDeadline(),
+                Instant.now(), Instant.now(), Instant.now(), userRole.map(Arrays::asList).orElse(Collections.emptyList()));
 
         uzer = repository.save(uzer);
         emailService.sendRegistrationConfirmEmail(uzer, locale);
@@ -86,7 +80,13 @@ public class UzerServiceImpl extends AbstractCrudService<Uzer, UzerRepository> i
 
     @Override
     public Uzer findByEmail(String email) {
-        return repository.findByEmail(email);
+        Uzer uzer = repository.findByEmail(email);
+
+        if (uzer == null) {
+            throw new UzerNotFoundException();
+        }
+
+        return uzer;
     }
 
     @Override

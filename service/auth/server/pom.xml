@@ -189,6 +189,7 @@
                                 <debug>true</debug>
                             </options>
                             <processors>
+                                <processor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</processor>
                                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
                                 <processor>org.mapstruct.ap.MappingProcessor</processor>
                             </processors>
@@ -196,7 +197,6 @@
                     </execution>
                 </executions>
                 <dependencies>
-
                     <dependency>
                         <groupId>org.hibernate</groupId>
                         <artifactId>hibernate-jpamodelgen</artifactId>

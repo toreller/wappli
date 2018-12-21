@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories("org.wappli.auth.server.repository")
 @EnableTransactionManagement
-@EntityScan("org.wappli.auth.domain")
+@EntityScan("org.wappli.auth.server.domain")
 public class JpaConfig {
 
 }

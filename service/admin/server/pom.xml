@@ -188,7 +188,6 @@
 					</execution>
 				</executions>
 				<dependencies>
-
                     <dependency>
 						<groupId>org.hibernate</groupId>
 						<artifactId>hibernate-jpamodelgen</artifactId>
@@ -205,5 +204,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

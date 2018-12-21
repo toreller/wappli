@@ -4,6 +4,7 @@ import org.wappli.auth.api.dto.entities.UzerDTO;
 import org.wappli.auth.api.dto.input.UzerRegInputDTO;
 import org.wappli.auth.api.dto.output.UzerAuth;
 import org.wappli.auth.api.enums.UzerStatusEnum;
+import org.wappli.auth.server.domain.Role;
 import org.wappli.auth.server.domain.Uzer;
 import org.wappli.auth.server.repository.UzerRepository;
 import org.mapstruct.*;
@@ -15,6 +16,7 @@ import org.wappli.common.server.service.mapper.MapperUsingRepository;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Mapper(componentModel = "spring", imports = {UzerStatusEnum.class})
@@ -24,20 +26,28 @@ public abstract class UzerMapper extends MapperUsingRepository<UzerDTO, Uzer> {
     private UzerRepository uzerRepository;
 
     @Override
-    public abstract Uzer toEntity(UzerDTO eDTO);
+    public Uzer toEntity(UzerDTO eDTO) {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
-    public abstract void merge(UzerDTO eDTO, Uzer entity);
+    public void merge(UzerDTO eDTO, @MappingTarget Uzer entity) {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
+    @Mapping(source = "entity", target = "item")
     public abstract EntityWithIdOutputDTO<UzerDTO> toDtoWithId(Uzer entity);
 
     @Override
+    @Mapping(source = "userStatus", target = "status")
     public abstract UzerDTO toDto(Uzer entity);
 
     @Mapping(expression = "java(false)", target = "activated")
     @Mapping(expression = "java(UzerStatusEnum.ACTIVE)", target = "userStatus")
-    public abstract Uzer toEntity(UzerRegInputDTO iDTO, String activationHash, Instant activateDeadline);
+    @Mapping(ignore = true, target = "id")
+    public abstract Uzer toEntity(UzerRegInputDTO iDTO, String activationHash, Instant activateDeadline,
+                                  Instant createDate, Instant modifyDate, Instant lastLogin, List<Role> roles);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "email", target = "username")
@@ -61,17 +71,17 @@ public abstract class UzerMapper extends MapperUsingRepository<UzerDTO, Uzer> {
         return new HashSet<>(Arrays.asList("ROLE_USER"));
     }
 
-    @ObjectFactory
-    Uzer getExistingInstance(Long id) {
-        if (id == null) {
-            return new Uzer();
-        }
-        final Uzer uzer = fromId(id);
+//    @ObjectFactory
+//    Uzer getExistingInstance(Long id) {
+//        if (id == null) {
+//            return new Uzer();
+//        }
+//        final Uzer uzer = fromId(id);
+//
+//        return toNewInstance(uzer);
+//    }
 
-        return toNewInstance(uzer);
-    }
-
-    protected abstract Uzer toNewInstance(Uzer uzer);
+//    protected abstract Uzer toNewInstance(Uzer uzer);
 
     @Override
     protected JpaRepository<Uzer, Long> getRepository() {

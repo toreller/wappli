@@ -38,7 +38,7 @@ public class Uzer extends AbstractEntity implements HasId {
 
     @NotNull
     @Size(max = 128)
-    @Column(name = "username")
+    @Column(name = "email")
     private String email;
 
     @Column(name = "activated")
