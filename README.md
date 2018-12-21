@@ -1,4 +1,4 @@
-# wappli
+# wappli (under construction)
 
 demo banking webapp with spring-boot 2, hibernate
 
