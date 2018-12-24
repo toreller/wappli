@@ -20,17 +20,15 @@
 	<properties>
 		<hibernate.version>5.2.14.Final</hibernate.version>
 		<mapstruct.version>1.2.0.Final</mapstruct.version>
-		<problem-spring-web.version>0.22.2</problem-spring-web.version>
 		<swagger.version>2.8.0</swagger.version>
 		<maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 		<problem-spring-web.version>0.23.0</problem-spring-web.version>
-		<spring-cloud-starter-netflix-eureka.version>2.0.1.RELEASE</spring-cloud-starter-netflix-eureka.version>
+		<!--<spring-cloud-starter-netflix-eureka.version>2.0.1.RELEASE</spring-cloud-starter-netflix-eureka.version>-->
 		<wappli-admin-api.version>0.0.1-SNAPSHOT</wappli-admin-api.version>
 		<wappli-common-server.version>0.0.1-SNAPSHOT</wappli-common-server.version>
 		<wappli-common-api.version>0.0.1-SNAPSHOT</wappli-common-api.version>
 		<spring-cloud-sleuth-zipkin.version>2.0.1.RELEASE</spring-cloud-sleuth-zipkin.version>
-		<mapstruct.version>1.2.0.Final</mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -47,11 +45,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<version>${spring-cloud-starter-netflix-eureka.version}</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+			<!--<version>${spring-cloud-starter-netflix-eureka.version}</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-zipkin</artifactId>

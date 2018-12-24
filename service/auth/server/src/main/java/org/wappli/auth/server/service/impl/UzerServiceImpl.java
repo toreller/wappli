@@ -2,6 +2,7 @@ package org.wappli.auth.server.service.impl;
 
 import org.wappli.auth.api.dto.entities.UzerDTO;
 import org.wappli.auth.api.dto.input.UzerRegInputDTO;
+import org.wappli.auth.api.enums.UzerStatusEnum;
 import org.wappli.auth.server.config.ApplicationConfig;
 import org.wappli.auth.server.domain.Role;
 import org.wappli.auth.server.domain.UzerRoles;
@@ -132,5 +133,15 @@ public class UzerServiceImpl extends AbstractCrudService<Uzer, UzerRepository> i
         uzer = repository.save(uzer);
 
         emailService.sendForgottenPasswordEmail(uzer, locale);
+    }
+
+    @Override
+    public void delete(Uzer entity) {
+        final Optional<Uzer> uzerOptional = repository.findById(entity.getId());
+
+        uzerOptional.ifPresent(u -> {
+            u.setUserStatus(UzerStatusEnum.INACTIVE);
+            repository.save(u);
+        });
     }
 }

@@ -79,10 +79,9 @@ public class UzerResourceIntTest {
     @Test
     @Transactional
     public void testInactivate() throws Exception {
-        final Uzer uzer1 = UzerUtil.createEntity(USERNAME, EMAIL, PWD);
-
-        Uzer uzer = uzer1;
+        Uzer uzer = UzerUtil.createEntity(USERNAME, EMAIL, PWD);
         uzer.setUserStatus(UzerStatusEnum.ACTIVE);
+
         uzer = uzerRepository.saveAndFlush(uzer);
 
         restMockMvc.perform(delete(API_BASE_URL + getEntityUrl() + "/{id}", uzer.getId())
